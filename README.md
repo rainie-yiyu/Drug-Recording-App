@@ -24,3 +24,9 @@ insist to take medicine and keep track of their blood sugar everyday. I want
 to creat an app that make some convenience for them to do those thing so that
 they can better manage their disease.
 
+**user story**
+1.add the drug you want to eat in the drug plan
+2.delete the drug that you don't need anymore.
+3.record your blood sugar value.
+4.see if your blood sugar is out of range.
+

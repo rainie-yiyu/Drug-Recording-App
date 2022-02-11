@@ -111,10 +111,10 @@ public class DiabetesApp {
     private void doRecordBloodSugar() {
         String selection;
         System.out.print("Enter your bloodSugar value: ");
+
+
         double value = input.nextDouble();
 
-        selection = input.next();
-        selection = selection.toLowerCase();
 
         if (value < MIN_GLYCEMIA) {
             System.out.println("warning! Too low");

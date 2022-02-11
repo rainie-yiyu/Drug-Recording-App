@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DrugPlanTest {
@@ -52,4 +54,33 @@ public class DrugPlanTest {
         assertEquals("All DOWN",newDrugPlan.remindDrug());
 
     }
+    @Test
+    void testlengh() {
+        assertEquals(0,newDrugPlan.length());
+        Drug d1 = new Drug("metformin", "BID");
+        newDrugPlan.addDrug(d1);
+        assertEquals(1,newDrugPlan.length());
+    }
+
+    @Test
+    void testGetDrugPlan() {
+        Drug d1 = new Drug("metformin", "BID");
+        Drug d2 = new Drug("Jentadueto","QID");
+        newDrugPlan.addDrug(d1);
+        newDrugPlan.addDrug(d2);
+        assertEquals(d1,newDrugPlan.getDrugPlan(0));
+        assertEquals(d2,newDrugPlan.getDrugPlan(1));
+
+
+    }
+    @Test
+    void returnDrugName() {
+        Drug d1 = new Drug("metformin", "BID");
+        Drug d2 = new Drug("Jentadueto","QID");
+        Drug d3 = new Drug("Glucovance","TID");
+        newDrugPlan.addDrug(d1);
+        assertEquals("metformin",newDrugPlan.returnDrugName());
+
+    }
+
 }

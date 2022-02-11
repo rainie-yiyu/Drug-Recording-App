@@ -37,15 +37,19 @@ public class DrugPlan {
         return "All DOWN";
     }
 
+    //EFFECTS:get the number of how many kinds of drug are in the drug plan.
     public int length() {
         return drugPlan.size();
     }
 
+    //EFFECTS: input the indext and get the drug out of the drupplan.
     public Drug getDrugPlan(int d) {
         return drugPlan.get(d);
     }
 
+    //EFFECTS: return all the drug name in the drug plan.
     public String returnDrugName() {
+
         for (Drug d : drugPlan) {
             return d.getName();
         }
