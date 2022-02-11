@@ -9,7 +9,7 @@ A *bulleted* list:
 
 An example of text with **bold** and *italic* fonts.  
 
-# Diabetes App
+## Diabetes App
 
 **what will the application do?**
 The application enables diabetes patients to keeps track of their drugplan and bloodsugar 
@@ -24,7 +24,7 @@ insist to take medicine and keep track of their blood sugar everyday. I want
 to creat an app that make some convenience for them to do those thing so that
 they can better manage their disease.
 
-**user story**
+#user story
 1.add the drug you want to eat in the drug plan
 2.delete the drug that you don't need anymore.
 3.record your blood sugar value.
