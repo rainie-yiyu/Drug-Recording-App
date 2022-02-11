@@ -23,6 +23,8 @@ public class DrugPlan {
     public void deleteDrug(Drug drug) {
         drugPlan.remove(drug);
     }
+
+
     //REQUIRES: the drugPlan is not empty.
     //EFFECTS: takes no argument,if there is one drug in the drupplan that has not been taken,
     // return the drugName.If not, return "ALL DOWN".
@@ -43,7 +45,12 @@ public class DrugPlan {
         return drugPlan.get(d);
     }
 
-
+    public String returnDrugName() {
+        for (Drug d : drugPlan) {
+            return d.getName();
+        }
+        return "None";
+    }
 
 
 

@@ -5,12 +5,17 @@ import model.Drug;
 import model.DrugPlan;
 
 import java.util.Scanner;
+import java.util.concurrent.BlockingDeque;
 
 public class DiabetesApp {
     private Scanner input;
-    private Drug drug;
+    private Drug drug1;
+    private Drug drug2;
     private DrugPlan drugPlan;
-    private BloodSugar bloodSugar;
+    private BloodSugar value;
+    public static final double MIN_GLYCEMIA = 3.9;
+    public static final double MAX_GLYCEMIA = 6.1;
+
 
     public DiabetesApp() {
         runDiabetesApp();
@@ -40,9 +45,9 @@ public class DiabetesApp {
     //MODIFIES: this
     //EFFECTS: initialize the diabetes app.
     public void init() {
-        DrugPlan drugplan = new DrugPlan();
-        Drug drug1 = new Drug("metafomin","BID");
-        Drug drug2 = new Drug("Jentadueto", "TID");
+        drugPlan = new DrugPlan();
+        drug1 = new Drug("metafomin","BID");
+        drug2 = new Drug("Jentadueto", "TID");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
 
@@ -77,8 +82,14 @@ public class DiabetesApp {
         String selection;
         System.out.print("Enter the drug you need to take: ");
 
-        selection = input.nextLine();
+        selection = input.next();
         selection = selection.toLowerCase();
+
+        drugPlan.addDrug(drug1);
+        System.out.print(drugPlan.returnDrugName());
+
+
+
 
 
 
@@ -86,9 +97,34 @@ public class DiabetesApp {
     }
 
     private void doDeleteDrug() {
+        String selection;
+        System.out.print("Enter the drug you need to delete: ");
+
+        selection = input.next();
+        selection = selection.toLowerCase();
+
+        drugPlan.deleteDrug(drug1);
+        System.out.print(drugPlan.returnDrugName());
+
     }
 
     private void doRecordBloodSugar() {
+        String selection;
+        System.out.print("Enter your bloodSugar value: ");
+        double value = input.nextDouble();
+
+        selection = input.next();
+        selection = selection.toLowerCase();
+
+        if (value < MIN_GLYCEMIA) {
+            System.out.println("warning! Too low");
+        } else if (value >= MAX_GLYCEMIA) {
+            System.out.println("Warning! Too High");
+        } else {
+            System.out.println("all good!");
+        }
 
     }
+
+
 }
