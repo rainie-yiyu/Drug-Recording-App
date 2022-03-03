@@ -73,14 +73,6 @@ public class DrugPlanTest {
 
 
     }
-    @Test
-    void returnDrugName() {
-        Drug d1 = new Drug("metformin", "BID");
-        Drug d2 = new Drug("Jentadueto","QID");
-        Drug d3 = new Drug("Glucovance","TID");
-        newDrugPlan.addDrug(d1);
-        assertEquals("metformin",newDrugPlan.returnDrugName());
 
-    }
 
 }

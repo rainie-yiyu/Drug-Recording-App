@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //Represent a druglist that the patient need to take everyday.
 public class DrugPlan {
@@ -42,19 +43,17 @@ public class DrugPlan {
         return drugPlan.size();
     }
 
-    //EFFECTS: input the indext and get the drug out of the drupplan.
+    //EFFECTS: input the index and get the drug out of the drupplan.
     public Drug getDrugPlan(int d) {
         return drugPlan.get(d);
     }
 
     //EFFECTS: return all the drug name in the drug plan.
-    public String returnDrugName() {
-
-        for (Drug d : drugPlan) {
-            return d.getName();
-        }
-        return "None";
+    public ArrayList<Drug> getDrugPlan() {
+        return drugPlan;
     }
+
+
 
 
 

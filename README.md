@@ -1,13 +1,6 @@
-# My Personal Project
 
-## A subtitle
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
 
-An example of text with **bold** and *italic* fonts.  
 
 ## Diabetes App
 
@@ -29,4 +22,7 @@ they can better manage their disease.
 2.delete the drug that you don't need anymore.
 3.record your blood sugar value.
 4.see if your blood sugar is out of range.
+5.As a user, I want to be able to save my drugplan to file
+6.As a user, I want to be able to be able to load my drugplan from file 
+
 

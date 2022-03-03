@@ -5,12 +5,11 @@ import model.Drug;
 import model.DrugPlan;
 
 import java.util.Scanner;
-import java.util.concurrent.BlockingDeque;
 
 public class DiabetesApp {
     private Scanner input;
-    private Drug drug1;
-    private Drug drug2;
+    private Drug newDrug;
+    private Drug deletedDrug;
     private DrugPlan drugPlan;
     private BloodSugar value;
     public static final double MIN_GLYCEMIA = 3.9;
@@ -46,8 +45,6 @@ public class DiabetesApp {
     //EFFECTS: initialize the diabetes app.
     public void init() {
         drugPlan = new DrugPlan();
-        drug1 = new Drug("metafomin","BID");
-        drug2 = new Drug("Jentadueto", "TID");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
 
@@ -66,9 +63,9 @@ public class DiabetesApp {
     // EFFECTS: processes user command
     private void processCommand(String command) {
         if (command.equals("a")) {
-            doAddDrug();
+            addDrugCommand();
         } else if (command.equals("d")) {
-            doDeleteDrug();
+            deleteDrugCommand();
         } else if (command.equals("r")) {
             doRecordBloodSugar();
         } else {
@@ -76,37 +73,63 @@ public class DiabetesApp {
         }
     }
 
-    //MODIFIES:this
-    //EFFECTS: conducts a add  drug to the plan action.
-    private void doAddDrug() {
-        String selection;
+    //
+    private void addDrugCommand() {
+        String addDrugName;
         System.out.print("Enter the drug you need to take: ");
 
-        selection = input.next();
-        selection = selection.toLowerCase();
-
-        drugPlan.addDrug(drug1);
-        System.out.print(drugPlan.returnDrugName());
-
-
-
-
-
-
-
+        addDrugName = input.next();
+        addDrugName = addDrugName.toLowerCase();
+        doAddDrug(addDrugName);
     }
 
-    private void doDeleteDrug() {
-        String selection;
+    private void doAddDrug(String command) {
+        newDrug = new Drug(command, "");
+        drugPlan.addDrug(newDrug);
+        printDrugPlan();
+    }
+
+    private void printDrugPlan() {
+        for (Drug drug : drugPlan.getDrugPlan()) {
+            System.out.println(drug.getName());
+        }
+    }
+
+    //MODIFIES:this
+    //EFFECTS: conducts a add  drug to the plan action.
+//    private void doAddDrug（String selection) {
+////        String selection;
+////        System.out.print("Enter the drug you need to take: ");
+//
+//        newDrug = new Drug("selection","");
+//        drugPlan.addDrug(newDrug);
+//
+//        for (Drug drug: drugPlan.returnDrugName()) {
+//            System.out.println(drug.getName());
+//        }
+
+
+    private void deleteDrugCommand() {
+        String deleteDrugName;
         System.out.print("Enter the drug you need to delete: ");
 
-        selection = input.next();
-        selection = selection.toLowerCase();
-
-        drugPlan.deleteDrug(drug1);
-        System.out.print(drugPlan.returnDrugName());
-
+        deleteDrugName = input.next();
+        deleteDrugName = deleteDrugName.toLowerCase();
+        doDeleteDrug(deleteDrugName);
     }
+
+    private void doDeleteDrug(String deleteDrugName) {
+        for (Drug drug : drugPlan.getDrugPlan()) {
+            if (deleteDrugName.equals(drug.getName())) {
+               // deletedDrug = new Drug(deleteDrugName, "");
+                drugPlan.deleteDrug(drug);
+            }
+        }
+        System.out.println("No such Drug");
+
+        printDrugPlan();
+    }
+
 
     private void doRecordBloodSugar() {
         String selection;
