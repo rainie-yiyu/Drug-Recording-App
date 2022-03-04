@@ -12,18 +12,18 @@ public class DrugPlanTest {
 
     @BeforeEach
     void runBefore() {
-        newDrugPlan = new DrugPlan();
+        newDrugPlan = new DrugPlan("yiyu's drugplan");
     }
 
     @Test
-    void testDrugPlan() {
+    void testDrugPlanSize() {
         assertEquals(0,newDrugPlan.length());
     }
 
     @Test
     void testAddDrug() {
-        Drug d1 = new Drug("metformin", "BID");
-        Drug d2 = new Drug("Jentadueto","QID");
+        Drug d1 = new Drug("metformin", Category.METFORMIN);
+        Drug d2 = new Drug("Jentadueto",Category.SULFONYLUREA);
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         assertEquals(2,newDrugPlan.length());
@@ -32,8 +32,8 @@ public class DrugPlanTest {
 
     @Test
     void testDeletDrug() {
-        Drug d1 = new Drug("metformin", "BID");
-        Drug d2 = new Drug("Jentadueto","QID");
+        Drug d1 = new Drug("metformin", Category.METFORMIN);
+        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREA);
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         newDrugPlan.deleteDrug(d2);
@@ -42,30 +42,19 @@ public class DrugPlanTest {
 
     }
 
-    @Test
-    void testRemindDrug() {
-        Drug d1 = new Drug("metformin", "BID");
-        Drug d2 = new Drug("Jentadueto","QID");
-        newDrugPlan.addDrug(d1);
-        newDrugPlan.addDrug(d2);
-        d1.setTaken();
-        assertEquals("Jentadueto",newDrugPlan.remindDrug());
-        d2.setTaken();
-        assertEquals("All DOWN",newDrugPlan.remindDrug());
 
-    }
     @Test
     void testlengh() {
         assertEquals(0,newDrugPlan.length());
-        Drug d1 = new Drug("metformin", "BID");
+        Drug d1 = new Drug("metformin",  Category.METFORMIN);
         newDrugPlan.addDrug(d1);
         assertEquals(1,newDrugPlan.length());
     }
 
     @Test
     void testGetDrugPlan() {
-        Drug d1 = new Drug("metformin", "BID");
-        Drug d2 = new Drug("Jentadueto","QID");
+        Drug d1 = new Drug("metformin",  Category.METFORMIN);
+        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREA);
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         assertEquals(d1,newDrugPlan.getDrugPlan(0));

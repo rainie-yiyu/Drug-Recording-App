@@ -1,17 +1,21 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.io.Writer;
+
 //Represent the medicine that Diabetes Patient need to take
-//with its name, Drug instruction and status(take or not).
-public class Drug {
+//with its name, Drug instruction and its category
+public class Drug implements Writable {
     private String name;
-    private String instruction;
-    private boolean isTaken;
+    private Category category;
+
 
     // EFFECTS: Drug that with its name and instruction and has not been taken.
-    public Drug(String name, String instruction) {
+    public Drug(String name, Category category) {
         this.name = name;
-        this.instruction = instruction;
-        isTaken = false;
+        this.category = category;
     }
 
     // EFFECTS: returns name
@@ -19,20 +23,24 @@ public class Drug {
         return name;
     }
 
-    // EFFECTS: returns instruction
-    public String getInstruction() {
-        return instruction;
+    public Category getCategory() {
+        return category;
     }
 
-    // EFFECTS: returns true if case is taken, false otherwise
-    public boolean isTaken() {
-        return isTaken;
+
+    // EFFECTS: returns string representation of this drug
+    public String toString() {
+        return category + ": " + name;
     }
 
-    // MODIFIES: this
-    // EFFECTS: take the medicine and isTaken return true.
-    public void setTaken() {
-        isTaken = true;
+
+    @Override
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("category", category);
+        return json;
     }
 
 

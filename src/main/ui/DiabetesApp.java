@@ -1,30 +1,43 @@
 package ui;
 
+import model.Category;
 import model.BloodSugar;
 import model.Drug;
 import model.DrugPlan;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+//Represents the diabetes application
 public class DiabetesApp {
+    private static final String JSON_STORE = "./data/drugplan.json";
     private Scanner input;
     private Drug newDrug;
-    private Drug deletedDrug;
     private DrugPlan drugPlan;
-    private BloodSugar value;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
     public static final double MIN_GLYCEMIA = 3.9;
     public static final double MAX_GLYCEMIA = 6.1;
 
-
-    public DiabetesApp() {
+    //EFFECTS: constructs drugplan and runs application
+    public DiabetesApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        drugPlan = new DrugPlan("yiyu's drugplan");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runDiabetesApp();
     }
-
+    // MODIFIES: this
+    // EFFECTS: processes user input
     private void runDiabetesApp() {
         boolean keepGoing = true;
         String command = null;
-
-        init();
+        input = new Scanner(System.in);
 
         while (keepGoing) {
             displayMenu();
@@ -41,22 +54,17 @@ public class DiabetesApp {
         System.out.println("\nGoodbye!");
     }
 
-    //MODIFIES: this
-    //EFFECTS: initialize the diabetes app.
-    public void init() {
-        drugPlan = new DrugPlan();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
 
-    }
-
-    public void displayMenu() {
+    // EFFECTS: displays menu of options to user
+    private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> add drug");
         System.out.println("\td -> delete drug");
-        System.out.println("\tr -> record bloodsugar ");
+        System.out.println("\tp -> print drugplan");
+        System.out.println("\tt -> test bloodsugar");
+        System.out.println("\ts -> save work room to file");
+        System.out.println("\tl -> load work room from file");
         System.out.println("\tq -> quit");
-
     }
 
     // MODIFIES: this
@@ -66,32 +74,49 @@ public class DiabetesApp {
             addDrugCommand();
         } else if (command.equals("d")) {
             deleteDrugCommand();
-        } else if (command.equals("r")) {
+        } else if (command.equals("t")) {
             doRecordBloodSugar();
+        } else if (command.equals("p")) {
+            printDrugPlan();
+        } else if (command.equals("s")) {
+            saveDrugPlan();
+        } else if (command.equals("l")) {
+            loadDrugPlan();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
-    //
+    // MODIFIES: this
+    // EFFECTS: prompt user for name and category of thingy and adds to workroom
     private void addDrugCommand() {
-        String addDrugName;
-        System.out.print("Enter the drug you need to take: ");
-
-        addDrugName = input.next();
-        addDrugName = addDrugName.toLowerCase();
-        doAddDrug(addDrugName);
+        Category category = readCategory();
+        System.out.println("Please enter name of drug: ");
+        String name = input.next();
+        drugPlan.addDrug(new Drug(name, category));
     }
 
-    private void doAddDrug(String command) {
-        newDrug = new Drug(command, "");
-        drugPlan.addDrug(newDrug);
-        printDrugPlan();
+    // EFFECTS: prompts user to select category and returns it
+    private Category readCategory() {
+        System.out.println("Please select a category for your drug");
+
+        int menuLabel = 1;
+        for (Category c : Category.values()) {
+            System.out.println(menuLabel + ": " + c);
+            menuLabel++;
+        }
+
+        int menuSelection = input.nextInt();
+        return Category.values()[menuSelection - 1];
     }
 
+
+    // EFFECTS: prints all the drugs in workroom to the console
     private void printDrugPlan() {
-        for (Drug drug : drugPlan.getDrugPlan()) {
-            System.out.println(drug.getName());
+        ArrayList<Drug> drugplan = drugPlan.getDrugPlan();
+
+        for (Drug d : drugplan) {
+            System.out.println(d);
         }
     }
 
@@ -123,9 +148,10 @@ public class DiabetesApp {
             if (deleteDrugName.equals(drug.getName())) {
                // deletedDrug = new Drug(deleteDrugName, "");
                 drugPlan.deleteDrug(drug);
+            } else {
+                System.out.println("No such Drug");
             }
         }
-        System.out.println("No such Drug");
 
         printDrugPlan();
     }
@@ -147,6 +173,29 @@ public class DiabetesApp {
             System.out.println("all good!");
         }
 
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveDrugPlan() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(drugPlan);
+            jsonWriter.close();
+            System.out.println("Saved " + drugPlan.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadDrugPlan() {
+        try {
+            drugPlan = jsonReader.read();
+            System.out.println("Loaded " + drugPlan.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 

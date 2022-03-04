@@ -1,15 +1,25 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 //Represent a druglist that the patient need to take everyday.
-public class DrugPlan {
+public class DrugPlan implements Writable {
+    private String name;
     private ArrayList<Drug> drugPlan;
 
-    //the user's drugplan with all the drug one need to take.
-    public DrugPlan() {
+    //EFFECTS: constructs drugplan with a name and empty list of drug
+    public DrugPlan(String name) {
+        this.name = name;
         drugPlan = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     //MODIFIES: this
@@ -26,18 +36,6 @@ public class DrugPlan {
     }
 
 
-    //REQUIRES: the drugPlan is not empty.
-    //EFFECTS: takes no argument,if there is one drug in the drupplan that has not been taken,
-    // return the drugName.If not, return "ALL DOWN".
-    public String remindDrug() {
-        for (Drug d : drugPlan) {
-            if (! (d.isTaken())) {
-                return d.getName();
-            }
-        }
-        return "All DOWN";
-    }
-
     //EFFECTS:get the number of how many kinds of drug are in the drug plan.
     public int length() {
         return drugPlan.size();
@@ -51,6 +49,25 @@ public class DrugPlan {
     //EFFECTS: return all the drug name in the drug plan.
     public ArrayList<Drug> getDrugPlan() {
         return drugPlan;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("drugplan", drugsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns drugs in this DrugPlan as a JSON array
+    private JSONArray drugsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Drug d : drugPlan) {
+            jsonArray.put(d.toJson());
+        }
+
+        return jsonArray;
     }
 
 

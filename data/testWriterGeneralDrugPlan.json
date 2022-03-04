@@ -1,0 +1,13 @@
+{
+    "name": "My drug plan",
+    "drugplan": [
+        {
+            "name": "metafomin",
+            "category": "METFORMIN"
+        },
+        {
+            "name": "insulin1",
+            "category": "INSULIN"
+        }
+    ]
+}

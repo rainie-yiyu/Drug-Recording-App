@@ -10,18 +10,14 @@ class DrugTest {
 
     @Test
     void testConstructor() {
-        Drug d = new Drug("metformin", "TID");
+        Drug d = new Drug("metformin",  Category.METFORMIN);
         assertEquals("metformin", d.getName());
-        assertEquals("TID",d.getInstruction());
+        assertEquals(Category.METFORMIN, d.getCategory());
     }
-
-    @Test
-    void testSetTaken() {
-        Drug d = new Drug("metformin", "three times a day");
-        d.setTaken();
-        assertTrue(d.isTaken());
-    }
-
 
 
 }
+
+
+
+
