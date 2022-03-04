@@ -32,6 +32,7 @@ public class DiabetesApp {
         jsonReader = new JsonReader(JSON_STORE);
         runDiabetesApp();
     }
+
     // MODIFIES: this
     // EFFECTS: processes user input
     private void runDiabetesApp() {
