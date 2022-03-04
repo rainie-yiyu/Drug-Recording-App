@@ -89,7 +89,7 @@ public class DiabetesApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: prompt user for name and category of thingy and adds to workroom
+    // EFFECTS: prompt user for name and category of thingy and adds to drugplan
     private void addDrugCommand() {
         Category category = readCategory();
         System.out.println("Please enter name of drug: ");
@@ -135,6 +135,7 @@ public class DiabetesApp {
 //        }
 
 
+    //EFFECTS: process deleteDrug command.
     private void deleteDrugCommand() {
         String deleteDrugName;
         System.out.print("Enter the drug you need to delete: ");
@@ -144,6 +145,7 @@ public class DiabetesApp {
         doDeleteDrug(deleteDrugName);
     }
 
+    //EFFECTS:
     private void doDeleteDrug(String deleteDrugName) {
         for (Drug drug : drugPlan.getDrugPlan()) {
             if (deleteDrugName.equals(drug.getName())) {

@@ -15,6 +15,12 @@ class DrugTest {
         assertEquals(Category.METFORMIN, d.getCategory());
     }
 
+    @Test
+    void testToString() {
+        Drug d = new Drug("metformin", Category.METFORMIN);
+        assertEquals("METFORMIN: metformin",d.toString());
+    }
+
 
 }
 

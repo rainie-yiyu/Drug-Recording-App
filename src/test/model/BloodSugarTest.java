@@ -20,9 +20,8 @@ public class BloodSugarTest {
 
     @Test
     void testValueWarning() {
-        assertEquals(4.2, newBloodSugar.getValue());
-        newBloodSugar.setValue(10);
         assertEquals("warning",newBloodSugar.valueWarning(10));
         assertEquals("all good",newBloodSugar.valueWarning(4.2));
+        assertEquals("warning",newBloodSugar.valueWarning(1));
     }
 }
