@@ -67,5 +67,7 @@ public class JsonReader {
         Drug drug = new Drug(name, category);
         drugPlan.addDrug(drug);
     }
+
+    //My code is reference from the instruction example.
 }
 

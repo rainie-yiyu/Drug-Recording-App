@@ -1,13 +1,7 @@
 {
     "name": "yiyu's drugplan",
-    "drugplan": [
-        {
-            "name": "lijiji",
-            "category": "SULFONYLUREA"
-        },
-        {
-            "name": "yiyiyi",
-            "category": "INSULIN"
-        }
-    ]
+    "drugplan": [{
+        "name": "metofomin",
+        "category": "METFORMIN"
+    }]
 }

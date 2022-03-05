@@ -51,7 +51,7 @@ class JsonWriterTest extends JsonTest {
         try {
             DrugPlan drugPlan = new DrugPlan("My drug plan");
             drugPlan.addDrug(new Drug("metafomin", Category.METFORMIN));
-            drugPlan.addDrug(new Drug("insulin1", Category.INSULIN));
+            drugPlan.addDrug(new Drug("insulin1", Category.SULFONYLUREAS));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralDrugPlan.json");
             writer.open();
             writer.write(drugPlan);
@@ -63,7 +63,7 @@ class JsonWriterTest extends JsonTest {
             ArrayList<Drug> drugplan = drugPlan.getDrugPlan();
             assertEquals(2, drugplan.size());
             checkDrug("metafomin", Category.METFORMIN, drugplan.get(0));
-            checkDrug("insulin1", Category.INSULIN, drugplan.get(1));
+            checkDrug("insulin1", Category.SULFONYLUREAS, drugplan.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

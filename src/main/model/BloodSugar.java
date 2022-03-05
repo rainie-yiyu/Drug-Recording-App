@@ -18,9 +18,6 @@ public class BloodSugar {
         return bloodSugar;
     }
 
-    public double setValue(double bloodSugar) {
-        return this.bloodSugar = bloodSugar;
-    }
 
     //REQUIRES: the blood sugar value can not be negative.
     //EFFECTS : takes blood sugar value as an arguement and if the value is out of

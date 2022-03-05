@@ -42,5 +42,7 @@ public class JsonWriter {
     private void saveToFile(String json) {
         writer.print(json);
     }
+
+    //My code is reference from the phase2 instruction example.
 }
 

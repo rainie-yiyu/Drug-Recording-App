@@ -121,18 +121,6 @@ public class DiabetesApp {
         }
     }
 
-    //MODIFIES:this
-    //EFFECTS: conducts a add  drug to the plan action.
-//    private void doAddDrug（String selection) {
-////        String selection;
-////        System.out.print("Enter the drug you need to take: ");
-//
-//        newDrug = new Drug("selection","");
-//        drugPlan.addDrug(newDrug);
-//
-//        for (Drug drug: drugPlan.returnDrugName()) {
-//            System.out.println(drug.getName());
-//        }
 
 
     //EFFECTS: process deleteDrug command.
@@ -155,8 +143,6 @@ public class DiabetesApp {
                 System.out.println("No such Drug");
             }
         }
-
-        printDrugPlan();
     }
 
 

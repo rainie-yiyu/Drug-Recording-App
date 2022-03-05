@@ -43,5 +43,4 @@ public class Drug implements Writable {
         return json;
     }
 
-
 }

@@ -45,7 +45,7 @@ class JsonReaderTest extends JsonTest {
             ArrayList<Drug> drugplan = drugPlan.getDrugPlan();
             assertEquals(2, drugplan.size());
             checkDrug("metafomin", Category.METFORMIN, drugplan.get(0));
-            checkDrug("insulin1", Category.INSULIN, drugplan.get(1));
+            checkDrug("insulin1", Category.SULFONYLUREAS, drugplan.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

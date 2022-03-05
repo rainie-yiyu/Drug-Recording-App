@@ -23,7 +23,7 @@ public class DrugPlanTest {
     @Test
     void testAddDrug() {
         Drug d1 = new Drug("metformin", Category.METFORMIN);
-        Drug d2 = new Drug("Jentadueto",Category.SULFONYLUREA);
+        Drug d2 = new Drug("Jentadueto",Category.SULFONYLUREAS);
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         assertEquals(2,newDrugPlan.length());
@@ -33,7 +33,7 @@ public class DrugPlanTest {
     @Test
     void testDeletDrug() {
         Drug d1 = new Drug("metformin", Category.METFORMIN);
-        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREA);
+        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREAS);
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         newDrugPlan.deleteDrug(d2);
@@ -54,7 +54,7 @@ public class DrugPlanTest {
     @Test
     void testGetDrugPlan() {
         Drug d1 = new Drug("metformin",  Category.METFORMIN);
-        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREA);
+        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREAS);
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         assertEquals(d1,newDrugPlan.getDrugPlan(0));
