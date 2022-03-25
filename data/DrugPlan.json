@@ -1,7 +1,13 @@
 {
     "name": "yiyu's drugplan",
-    "drugplan": [{
-        "name": "metofomin",
-        "category": "METFORMIN"
-    }]
+    "drugplan": [
+        {
+            "name": "abc",
+            "category": "METFORMIN"
+        },
+        {
+            "name": "bcb",
+            "category": "SULFONYLUREAS"
+        }
+    ]
 }

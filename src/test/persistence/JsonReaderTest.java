@@ -1,13 +1,11 @@
 package persistence;
 
-import model.Category;
 import model.Drug;
 import model.DrugPlan;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,8 +42,8 @@ class JsonReaderTest extends JsonTest {
             assertEquals("My drug plan", drugPlan.getName());
             ArrayList<Drug> drugplan = drugPlan.getDrugPlan();
             assertEquals(2, drugplan.size());
-            checkDrug("metafomin", Category.METFORMIN, drugplan.get(0));
-            checkDrug("insulin1", Category.SULFONYLUREAS, drugplan.get(1));
+            checkDrug("metafomin", "qid", drugplan.get(0));
+            checkDrug("insulin1", "qid", drugplan.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

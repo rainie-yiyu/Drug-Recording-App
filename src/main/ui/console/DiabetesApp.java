@@ -1,7 +1,6 @@
-package ui;
+package ui.console;
 
 import model.Category;
-import model.BloodSugar;
 import model.Drug;
 import model.DrugPlan;
 import persistence.JsonReader;
@@ -10,7 +9,6 @@ import persistence.JsonWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 //Represents the diabetes application
@@ -94,7 +92,7 @@ public class DiabetesApp {
         Category category = readCategory();
         System.out.println("Please enter name of drug: ");
         String name = input.next();
-        drugPlan.addDrug(new Drug(name, category));
+        drugPlan.addDrug(new Drug(name,toString()));
     }
 
     // EFFECTS: prompts user to select category and returns it

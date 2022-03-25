@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 //Represent a druglist that the patient need to take everyday.
 public class DrugPlan implements Writable {
@@ -42,14 +41,35 @@ public class DrugPlan implements Writable {
     }
 
     //EFFECTS: input the index and get the drug out of the drupplan.
-    public Drug getDrugPlan(int d) {
+    public Drug getIndexDrug(int d) {
         return drugPlan.get(d);
     }
+
+
+    public void clearDrugPlan() {
+        drugPlan.clear();
+    }
+
+    public Drug getIndex(int i) {
+        return drugPlan.get(i);
+    }
+
 
     //EFFECTS: return all the drug name in the drug plan.
     public ArrayList<Drug> getDrugPlan() {
         return drugPlan;
     }
+
+    public ArrayList<String> viewDrugs() {
+        ArrayList<String> drugString = new ArrayList<>();
+        int m = this. length();
+        for (int i = 0; i < m; i++) {
+            Drug d = this.getIndex(i);
+            drugString.add(d.toString());
+        }
+        return drugString;
+    }
+
 
     @Override
     public JSONObject toJson() {

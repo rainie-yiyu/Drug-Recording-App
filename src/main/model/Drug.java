@@ -9,13 +9,15 @@ import java.io.Writer;
 //with its name, Drug instruction and its category
 public class Drug implements Writable {
     private String name;
-    private Category category;
+ //   private Category category;
+    private String takentime;
 
 
     // EFFECTS: Drug that with its name and instruction and has not been taken.
-    public Drug(String name, Category category) {
+    public Drug(String name, String takentime) {
         this.name = name;
-        this.category = category;
+ //       this.category = category;
+        this.takentime = takentime;
     }
 
     // EFFECTS: returns name
@@ -23,14 +25,20 @@ public class Drug implements Writable {
         return name;
     }
 
-    public Category getCategory() {
-        return category;
+//    public Category getCategory() {
+//        return category;
+//    }
+
+    public String getTakentime() {
+        return takentime;
     }
+
+
 
 
     // EFFECTS: returns string representation of this drug
     public String toString() {
-        return category + ": " + name;
+        return name + ": " + takentime;
     }
 
 
@@ -39,7 +47,7 @@ public class Drug implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("category", category);
+    //    json.put("category", category);
         return json;
     }
 

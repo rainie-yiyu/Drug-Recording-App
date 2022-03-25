@@ -3,8 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DrugPlanTest {
@@ -22,22 +20,22 @@ public class DrugPlanTest {
 
     @Test
     void testAddDrug() {
-        Drug d1 = new Drug("metformin", Category.METFORMIN);
-        Drug d2 = new Drug("Jentadueto",Category.SULFONYLUREAS);
+        Drug d1 = new Drug("metformin", "qid");
+        Drug d2 = new Drug("Jentadueto","qid");
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         assertEquals(2,newDrugPlan.length());
-        assertEquals(d2,newDrugPlan.getDrugPlan(1));
+        assertEquals(d2,newDrugPlan.getIndexDrug(1));
     }
 
     @Test
     void testDeletDrug() {
-        Drug d1 = new Drug("metformin", Category.METFORMIN);
-        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREAS);
+        Drug d1 = new Drug("metformin", "qid");
+        Drug d2 = new Drug("Jentadueto", "qid");
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
         newDrugPlan.deleteDrug(d2);
-        assertEquals(d1,newDrugPlan.getDrugPlan(0));
+        assertEquals(d1,newDrugPlan.getIndexDrug(0));
         assertEquals(1,newDrugPlan.length());
 
     }
@@ -46,19 +44,19 @@ public class DrugPlanTest {
     @Test
     void testlengh() {
         assertEquals(0,newDrugPlan.length());
-        Drug d1 = new Drug("metformin",  Category.METFORMIN);
+        Drug d1 = new Drug("metformin",  "qid");
         newDrugPlan.addDrug(d1);
         assertEquals(1,newDrugPlan.length());
     }
 
     @Test
     void testGetDrugPlan() {
-        Drug d1 = new Drug("metformin",  Category.METFORMIN);
-        Drug d2 = new Drug("Jentadueto", Category.SULFONYLUREAS);
+        Drug d1 = new Drug("metformin",  "qid");
+        Drug d2 = new Drug("Jentadueto", "qid");
         newDrugPlan.addDrug(d1);
         newDrugPlan.addDrug(d2);
-        assertEquals(d1,newDrugPlan.getDrugPlan(0));
-        assertEquals(d2,newDrugPlan.getDrugPlan(1));
+        assertEquals(d1,newDrugPlan.getIndexDrug(0));
+        assertEquals(d2,newDrugPlan.getIndexDrug(1));
 
 
     }

@@ -64,7 +64,7 @@ public class JsonReader {
     private void addDrug(DrugPlan drugPlan, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Category category = Category.valueOf(jsonObject.getString("category"));
-        Drug drug = new Drug(name, category);
+        Drug drug = new Drug(name, toString());
         drugPlan.addDrug(drug);
     }
 

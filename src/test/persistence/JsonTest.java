@@ -6,8 +6,8 @@ import model.Drug;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonTest {
-    protected void checkDrug(String name, Category category, Drug drug) {
+    protected void checkDrug(String name, String takentime, Drug drug) {
         assertEquals(name, drug.getName());
-        assertEquals(category, drug.getCategory());
+        assertEquals(takentime, drug.getTakentime());
     }
 }

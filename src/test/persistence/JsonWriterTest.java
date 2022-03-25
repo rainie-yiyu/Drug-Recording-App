@@ -1,13 +1,11 @@
 package persistence;
 
-import model.Category;
 import model.Drug;
 import model.DrugPlan;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,8 +48,8 @@ class JsonWriterTest extends JsonTest {
     void testWriterGeneralDrugplan() {
         try {
             DrugPlan drugPlan = new DrugPlan("My drug plan");
-            drugPlan.addDrug(new Drug("metafomin", Category.METFORMIN));
-            drugPlan.addDrug(new Drug("insulin1", Category.SULFONYLUREAS));
+            drugPlan.addDrug(new Drug("metafomin", "qid"));
+            drugPlan.addDrug(new Drug("insulin1", "qid"));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralDrugPlan.json");
             writer.open();
             writer.write(drugPlan);
@@ -62,8 +60,8 @@ class JsonWriterTest extends JsonTest {
             assertEquals("My drug plan", drugPlan.getName());
             ArrayList<Drug> drugplan = drugPlan.getDrugPlan();
             assertEquals(2, drugplan.size());
-            checkDrug("metafomin", Category.METFORMIN, drugplan.get(0));
-            checkDrug("insulin1", Category.SULFONYLUREAS, drugplan.get(1));
+            checkDrug("metafomin", "qid", drugplan.get(0));
+            checkDrug("insulin1", "qid", drugplan.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
