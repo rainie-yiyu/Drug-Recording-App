@@ -16,13 +16,14 @@ import java.io.IOException;
 
 public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     protected DrugPlan yuDrugPlan;
-    protected JList<String> myDrugPlan;
+    protected JList<String> myDrugPlanList;
     protected DefaultListModel<String> defaultListModel;
 
     private JFrame frame;
     private JPanel inputPanel;
     private JPanel bottomPanel;
     private JScrollPane outputPanel;
+    private JComboBox comboBox;
 
     private JButton addButton;
     protected JButton deleteButton;
@@ -35,7 +36,7 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
-    public static final String JSON_STORE = ".data/DrugPlanProject.json";
+    public static final String JSON_STORE = "./data/drugplan.json";
 
     private AddDrugListener addDrugListener;
     private DeleteDrugListener deleteDrugListener;
@@ -44,7 +45,7 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     //constructor
     DiabetesAppGUI() {
         super(new BorderLayout());
-        yuDrugPlan = new DrugPlan("yiyu's drug plan");
+        yuDrugPlan = new DrugPlan();
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
         defaultListModel = new DefaultListModel<>();
@@ -104,7 +105,6 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-
         loadSaveWindows();
 
 
@@ -114,17 +114,16 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     //MODIFIES: this
     //EFFECTS: place a scroll list on the output panel.
     public void setOutputPanel() {
-        outputPanel = new JScrollPane(myDrugPlan);
+        outputPanel = new JScrollPane(myDrugPlanList);
         outputPanel.createVerticalScrollBar();
 
     }
 
+    //EFFECT: put all the label and textfield in the panel;
     public void setInputPanel() {
         inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.LINE_AXIS));
         inputPanel.setBackground(new Color(0x84D7E3));
-       // frame.add(inputPanel,BorderLayout.PAGE_START);
-       // inputPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
         inputPanel.add(drugNameLabel);
         inputPanel.add(Box.createHorizontalStrut(5));
@@ -140,15 +139,16 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
         inputPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         add(inputPanel,BorderLayout.PAGE_START);
-      //  inputPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        //  inputPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
     }
 
+    //MODIFEIS: put the bottom in the panel;
     private void setBottomPanel() {
         bottomPanel = new JPanel();
         bottomPanel.setBackground(new Color(0xA7E8D3));
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-        bottomPanel.setLayout(new BoxLayout(bottomPanel,BoxLayout.LINE_AXIS));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
         add(bottomPanel, BorderLayout.PAGE_END);
 
         inputPanel.add(Box.createHorizontalStrut(5));
@@ -156,10 +156,12 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     }
 
 
+    //MODIFEIS: Name the drug label;
     public void addDrugNameLabel() {
         drugNameLabel = new JLabel("Drug Name: ");
     }
 
+    //MODIFEIS: name the next field and add listener;
     private void addDrugNameTextField() {
         drugName = new JTextField(4);
         drugName.addActionListener(addDrugListener);
@@ -167,10 +169,12 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
     }
 
+    //MODIFES: name the taketime label;
     private void addTakeTimeLabel() {
         takeTimeLabel = new JLabel("Take Time: ");
     }
 
+    //MODIFEIS: name the taketime textfield and add the listener;
     private void addTakeTimeLabelTextField() {
         takeTime = new JTextField(4);
         takeTime.addActionListener(addDrugListener);
@@ -179,14 +183,15 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     }
 
 
-
+    //MODIFEIS: set the planlist;
     private void addDrugList() {
-        myDrugPlan = new JList<>(defaultListModel);
-        myDrugPlan.setSelectionMode((ListSelectionModel.SINGLE_SELECTION));
-        myDrugPlan.setSelectedIndex(0);
-        myDrugPlan.addListSelectionListener(this);
+        myDrugPlanList = new JList<>(defaultListModel);
+        myDrugPlanList.setSelectionMode((ListSelectionModel.SINGLE_SELECTION));
+        myDrugPlanList.setSelectedIndex(0);
+        myDrugPlanList.addListSelectionListener(this);
     }
 
+    //MODIFEIS: set the add button and add listener;
     private void setAddButton() {
         addButton = new JButton("add");
         addDrugListener = new AddDrugListener(this, addButton);
@@ -194,10 +199,13 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
     }
 
+    //MODIFIES: andd the druglist listener;
     public AddDrugListener getAddDrugListener() {
         return addDrugListener;
     }
 
+
+    //MODIFEIS: do the add drug when press the add button;
     public void addListener(AddDrugListener listener) {
         if (getAddDrugListener() != addDrugListener) {
             this.addDrugListener = listener;
@@ -210,6 +218,7 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     }
 
 
+    //MODIIFES: clear all the drug in the list when press button;
     private void addClearButton() {
         clearButton = new JButton("clear");
         clearListener = new ClearListener(this);
@@ -219,6 +228,7 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
     }
 
+    //MODIFES: delete the choosen drug when press the delete button;
     private void addDeleteButton() {
         deleteButton = new JButton("delete");
         deleteDrugListener = new DeleteDrugListener(this);
@@ -227,10 +237,11 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: create dialog when opening
+    // MODIFIES: this
+    // EFFECTS:  create pop-up windows when opening, show pop-up window when closing
     private void loadSaveWindows() {
         load();
+
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -252,13 +263,13 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
                 jsonWriter.close();
                 System.out.println("Saved to " + JSON_STORE);
                 frame.dispose();
-                yuDrugPlan.toString();
+                yuDrugPlan.printLog();
             } catch (FileNotFoundException e) {
                 System.out.println("Unable to write to file: " + JSON_STORE);
             }
         } else if (n == 1) {
             frame.dispose();
-            yuDrugPlan.toString();
+            yuDrugPlan.printLog();
         }
     }
 
@@ -277,10 +288,10 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
                 }
             } catch (IOException e) {
                 System.out.println("Unable to read from file: " + JSON_STORE);
-                yuDrugPlan = new DrugPlan(" ");
+                yuDrugPlan = new DrugPlan();
             }
         } else {
-            yuDrugPlan = new DrugPlan(" ");
+            yuDrugPlan = new DrugPlan();
         }
     }
 
@@ -294,7 +305,7 @@ public class DiabetesAppGUI extends JPanel implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
-            if (myDrugPlan.getSelectedIndex() == -1) {
+            if (myDrugPlanList.getSelectedIndex() == -1) {
                 deleteButton.setEnabled(false);
 
 

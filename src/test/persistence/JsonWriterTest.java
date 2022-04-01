@@ -17,7 +17,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            DrugPlan drugPlan = new DrugPlan("My drug plan");
+            DrugPlan drugPlan = new DrugPlan();
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -29,7 +29,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyDrugPlan() {
         try {
-            DrugPlan drugPlan  = new DrugPlan("My drug plan");
+            DrugPlan drugPlan  = new DrugPlan();
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyDrugPlan.json");
             writer.open();
             writer.write(drugPlan);
@@ -37,7 +37,7 @@ class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyDrugPlan.json");
             drugPlan = reader.read();
-            assertEquals("My drug plan", drugPlan.getName());
+        //    assertEquals("My drug plan", drugPlan.getName());
             assertEquals(0, drugPlan.length());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -47,7 +47,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralDrugplan() {
         try {
-            DrugPlan drugPlan = new DrugPlan("My drug plan");
+            DrugPlan drugPlan = new DrugPlan();
             drugPlan.addDrug(new Drug("metafomin", "qid"));
             drugPlan.addDrug(new Drug("insulin1", "qid"));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralDrugPlan.json");
@@ -57,7 +57,7 @@ class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralDrugPlan.json");
             drugPlan = reader.read();
-            assertEquals("My drug plan", drugPlan.getName());
+       //     assertEquals("My drug plan", drugPlan.getName());
             ArrayList<Drug> drugplan = drugPlan.getDrugPlan();
             assertEquals(2, drugplan.size());
             checkDrug("metafomin", "qid", drugplan.get(0));

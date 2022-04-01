@@ -1,13 +1,10 @@
-{
-    "name": "My drug plan",
-    "drugplan": [
-        {
-            "name": "metafomin",
-            "category": "METFORMIN"
-        },
-        {
-            "name": "insulin1",
-            "category": "SULFONYLUREAS"
-        }
-    ]
-}
+{"drugplan": [
+    {
+        "name": "metafomin",
+        "takentime": "qid"
+    },
+    {
+        "name": "insulin1",
+        "takentime": "qid"
+    }
+]}

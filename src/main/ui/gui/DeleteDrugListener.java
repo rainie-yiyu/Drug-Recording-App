@@ -10,11 +10,11 @@ public class DeleteDrugListener implements ActionListener {
         this.diabetesAppGUI = diabetesAppGUI;
     }
 
+    //MODIFES: delete the drug in the list that we have choose;
     @Override
     public void actionPerformed(ActionEvent e) {
         int s = diabetesAppGUI.defaultListModel.getSize();
-        int i = diabetesAppGUI.myDrugPlan.getSelectedIndex();
-
+        int i = diabetesAppGUI.myDrugPlanList.getSelectedIndex();
         diabetesAppGUI.yuDrugPlan.deleteDrug(diabetesAppGUI.yuDrugPlan.getIndex(i));
         diabetesAppGUI.defaultListModel.remove(i);
 
@@ -25,8 +25,8 @@ public class DeleteDrugListener implements ActionListener {
             if (i == s) {
                 i--;
             }
-            diabetesAppGUI.myDrugPlan.setSelectedIndex(i);
-            diabetesAppGUI.myDrugPlan.ensureIndexIsVisible(i);
+            diabetesAppGUI.myDrugPlanList.setSelectedIndex(i);
+            diabetesAppGUI.myDrugPlanList.ensureIndexIsVisible(i);
         }
 
     }

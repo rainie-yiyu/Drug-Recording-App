@@ -25,4 +25,27 @@ they can better manage their disease.
 5.As a user, I want to be able to save my drugplan to file
 6.As a user, I want to be able to be able to load my drugplan from file 
 
+## Phase4: Task 2
+Fri Apr 01 12:48:28 PDT 2022
+Drug: [aaa: ddd] is added to the drugPlan
+Fri Apr 01 12:48:28 PDT 2022
+Drug: [fff: sss] is added to the drugPlan
+Fri Apr 01 12:48:28 PDT 2022
+Drug: [lll: lll] is added to the drugPlan
+Fri Apr 01 12:48:28 PDT 2022
+Drug: [ddd: ddd] is added to the drugPlan
+Fri Apr 01 12:48:28 PDT 2022
+Drug: [xdd: ddd] is added to the drugPlan
+Fri Apr 01 12:48:34 PDT 2022
+Drug: [ddd: ddd] is added to the drugPlan
+Fri Apr 01 12:48:36 PDT 2022
+Drug: [ddd: ddd] is deleted from the drugPlan
+Fri Apr 01 12:48:42 PDT 2022
+Drug: [dd: wfwfw] is added to the drugPlan
+Fri Apr 01 12:48:45 PDT 2022
+Drug: [fff: sss] is deleted from the drugPlan
 
+## Phase 4: Task 3
+If I had more time to improve my project:
+-I would use more abstract class or interface to reduce duplicate;
+-I would not declare blood sugar as a class;

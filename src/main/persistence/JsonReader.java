@@ -41,10 +41,10 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses drugplan from JSON object and returns it
     private DrugPlan parseDrugPlan(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        DrugPlan drugPlan = new DrugPlan(name);
+      //  String name = jsonObject.getString("name");
+        DrugPlan drugPlan = new DrugPlan();
         addDrugs(drugPlan, jsonObject);
         return drugPlan;
     }
@@ -63,8 +63,9 @@ public class JsonReader {
     // EFFECTS: parses drug from JSON object and adds it to drugplan
     private void addDrug(DrugPlan drugPlan, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        Category category = Category.valueOf(jsonObject.getString("category"));
-        Drug drug = new Drug(name, toString());
+        String takentime = jsonObject.getString("takentime");
+    //    Category category = Category.valueOf(jsonObject.getString("category"));
+        Drug drug = new Drug(name, takentime);
         drugPlan.addDrug(drug);
     }
 

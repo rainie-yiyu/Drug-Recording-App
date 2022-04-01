@@ -1,13 +1,22 @@
-{
-    "name": "yiyu's drugplan",
-    "drugplan": [
-        {
-            "name": "abc",
-            "category": "METFORMIN"
-        },
-        {
-            "name": "bcb",
-            "category": "SULFONYLUREAS"
-        }
-    ]
-}
+{"drugplan": [
+    {
+        "name": "aaa",
+        "takentime": "ddd"
+    },
+    {
+        "name": "lll",
+        "takentime": "lll"
+    },
+    {
+        "name": "xdd",
+        "takentime": "ddd"
+    },
+    {
+        "name": "ddd",
+        "takentime": "ddd"
+    },
+    {
+        "name": "dd",
+        "takentime": "wfwfw"
+    }
+]}

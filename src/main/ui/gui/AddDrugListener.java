@@ -1,6 +1,5 @@
 package ui.gui;
 
-import model.Category;
 import model.Drug;
 
 import javax.swing.*;
@@ -15,17 +14,20 @@ public class AddDrugListener implements ActionListener, DocumentListener {
     private DiabetesAppGUI drugPlanGUI;
     private JButton addButton;
 
+
+    //MODIFIES: constructor;
     public AddDrugListener(DiabetesAppGUI drugPlanGUI, JButton addButton) {
         this.drugPlanGUI = drugPlanGUI;
         this.addButton = addButton;
     }
 
 
+    //MODIFEIS: do add drug to the list;
     @Override
     public void actionPerformed(ActionEvent e) {
         String drugNameText = drugPlanGUI.drugName.getText();
         String takeTimeText = drugPlanGUI.takeTime.getText();
-        int i = drugPlanGUI.myDrugPlan.getSelectedIndex();
+        int i = drugPlanGUI.myDrugPlanList.getSelectedIndex();
 
         if (i == -1) {
             i = 0;
@@ -36,27 +38,29 @@ public class AddDrugListener implements ActionListener, DocumentListener {
         drugPlanGUI.yuDrugPlan.addDrug(drug);
         drugPlanGUI.defaultListModel.addElement(drug.toString());
 
-        drugPlanGUI.drugName.requestFocusInWindow();
-        drugPlanGUI.takeTime.requestFocusInWindow();
         drugPlanGUI.drugName.setText("");
         drugPlanGUI.takeTime.setText("");
-        drugPlanGUI.myDrugPlan.setSelectedIndex(i);
-        drugPlanGUI.myDrugPlan.ensureIndexIsVisible(i);
+        drugPlanGUI.myDrugPlanList.setSelectedIndex(i);
+        drugPlanGUI.myDrugPlanList.ensureIndexIsVisible(i);
 
 
     }
 
+    //MODIFIES: enalble the button when is enabled;
     @Override
     public void insertUpdate(DocumentEvent e) {
         enableButton();
     }
 
+    //MODIFES: when there are nothing;
     @Override
     public void removeUpdate(DocumentEvent e) {
         handleEmptyField(e);
 
     }
 
+
+    //MODIFES: change the button when it's not enabled;
     @Override
     public void changedUpdate(DocumentEvent e) {
         if (!handleEmptyField(e)) {
@@ -65,12 +69,14 @@ public class AddDrugListener implements ActionListener, DocumentListener {
 
     }
 
+    //MODIFES: set the button that can be choose;
     private void enableButton() {
         if (!buttonEnabled) {
             addButton.setEnabled(true);
         }
     }
 
+    //MODIFES: when there is empty field in the textfield, do nothing;
     private boolean handleEmptyField(DocumentEvent e) {
         if (e.getDocument().getLength() <= 0) {
             addButton.setEnabled(false);
@@ -80,10 +86,12 @@ public class AddDrugListener implements ActionListener, DocumentListener {
         return false;
     }
 
+
     public DiabetesAppGUI getDrugPlanGUI() {
         return drugPlanGUI;
     }
 
+    //MODIFES: set the GUI be the GUI that we choose;
     public void setGUI(DiabetesAppGUI drugPlanGUI) {
         if (getDrugPlanGUI() != drugPlanGUI) {
             this.drugPlanGUI = drugPlanGUI;

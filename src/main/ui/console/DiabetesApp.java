@@ -25,7 +25,7 @@ public class DiabetesApp {
     //EFFECTS: constructs drugplan and runs application
     public DiabetesApp() throws FileNotFoundException {
         input = new Scanner(System.in);
-        drugPlan = new DrugPlan("yiyu's drugplan");
+        drugPlan = new DrugPlan();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runDiabetesApp();
@@ -168,7 +168,7 @@ public class DiabetesApp {
             jsonWriter.open();
             jsonWriter.write(drugPlan);
             jsonWriter.close();
-            System.out.println("Saved " + drugPlan.getName() + " to " + JSON_STORE);
+            System.out.println("Saved to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -179,7 +179,7 @@ public class DiabetesApp {
     private void loadDrugPlan() {
         try {
             drugPlan = jsonReader.read();
-            System.out.println("Loaded " + drugPlan.getName() + " from " + JSON_STORE);
+            System.out.println("Loaded from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

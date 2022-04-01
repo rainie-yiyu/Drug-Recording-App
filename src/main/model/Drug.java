@@ -48,6 +48,7 @@ public class Drug implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", name);
     //    json.put("category", category);
+        json.put("takentime", takentime);
         return json;
     }
 

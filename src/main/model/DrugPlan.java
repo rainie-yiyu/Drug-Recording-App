@@ -5,26 +5,25 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 //Represent a druglist that the patient need to take everyday.
 public class DrugPlan implements Writable {
-    private String name;
     private ArrayList<Drug> drugPlan;
 
     //EFFECTS: constructs drugplan with a name and empty list of drug
-    public DrugPlan(String name) {
-        this.name = name;
+    public DrugPlan() {
+
         drugPlan = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
 
     //MODIFIES: this
     //EFFECTS: takes a Drug as an argument and, adds it to the DrupPlan.
     public void addDrug(Drug drug) {
         drugPlan.add(drug);
+        Event event = new Event("Drug: [" + drug.toString() + "]" + " is added to the drugPlan");
+        EventLog.getInstance().logEvent(event);
     }
 
     //REQUIRES: the drugplan is not empty.
@@ -32,6 +31,8 @@ public class DrugPlan implements Writable {
     //EFFECTS: takes a Drug as an argument and delete it if the patients don't need to take it anymore;
     public void deleteDrug(Drug drug) {
         drugPlan.remove(drug);
+        Event event = new Event("Drug: [" + drug.toString() + "] is deleted from the drugPlan");
+        EventLog.getInstance().logEvent(event);
     }
 
 
@@ -74,12 +75,12 @@ public class DrugPlan implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name", name);
+        //     json.put("name", name);
         json.put("drugplan", drugsToJson());
         return json;
     }
 
-    // EFFECTS: returns drugs in this DrugPlan as a JSON array
+    // EFFECTS: returns things in this workroom as a JSON array
     private JSONArray drugsToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -90,9 +91,12 @@ public class DrugPlan implements Writable {
         return jsonArray;
     }
 
-
-
-
+    // EFFECTS: change the Event into a string
+    public void printLog() {
+        for (Event e: EventLog.getInstance()) {
+            System.out.println(e.toString());
+        }
+    }
 
 }
 

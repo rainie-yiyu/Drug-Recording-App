@@ -10,7 +10,7 @@ public class DrugPlanTest {
 
     @BeforeEach
     void runBefore() {
-        newDrugPlan = new DrugPlan("yiyu's drugplan");
+        newDrugPlan = new DrugPlan();
     }
 
     @Test
